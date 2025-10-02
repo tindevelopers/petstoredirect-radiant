@@ -1,0 +1,53 @@
+# Source files (we only publish built files)
+src/
+components/
+tokens/
+vendors/
+utils/
+types/
+
+# Configuration files
+tsconfig.json
+rollup.config.js
+postcss.config.js
+.eslintrc.js
+.prettierrc
+jest.config.js
+
+# Development files
+.storybook/
+stories/
+**/*.stories.tsx
+**/*.test.tsx
+**/*.test.ts
+**/*.spec.tsx
+**/*.spec.ts
+
+# Documentation (keep README.md)
+docs/
+*.md
+!README.md
+
+# Templates (optional - include if you want to ship templates)
+templates/
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+.travis.yml
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# Editor
+.vscode/
+.idea/
+
+# Misc
+.DS_Store
+*.log
+coverage/
+.nyc_output/
+node_modules/
