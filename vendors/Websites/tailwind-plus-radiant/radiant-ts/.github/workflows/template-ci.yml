@@ -1,4 +1,4 @@
-name: CI/CD Pipeline - CACHE BUSTER
+name: Template CI/CD Pipeline
 
 on:
   push:
@@ -8,8 +8,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  ci:
-    name: Turborepo CI/CD
+  template-validation:
+    name: Template Validation
     runs-on: ubuntu-latest
     
     steps:
@@ -25,6 +25,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
       
+      - name: Template Validation
+        run: |
+          echo "🎯 TEMPLATE VALIDATION STARTED"
+          echo "📊 Timestamp: $(date)"
+          echo "🔄 This is a GitHub template validation"
+          echo "✅ No Storybook, no Vercel, no deployment"
+          echo "🚀 Turborepo CI/CD only"
+      
       - name: Run Turborepo Lint
         run: npx turbo lint
       
@@ -37,18 +45,8 @@ jobs:
       - name: Run Turborepo Build
         run: npx turbo build
       
-      - name: Cache Buster Step
+      - name: Template Success
         run: |
-          echo "🚀 CACHE BUSTER: $(date)"
-          echo "🔄 Forcing GitHub API refresh"
-          echo "📊 Random: $RANDOM"
-          echo "✅ Workflow cache cleared"
-      
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: build-artifacts-$(date +%s)
-          path: .next/
-          retention-days: 7
-# CI/CD Pipeline Status: Fri Oct  3 11:16:10 CEST 2025
-# Manual trigger: Fri Oct  3 11:22:49 CEST 2025
+          echo "🎉 TEMPLATE VALIDATION COMPLETE"
+          echo "✅ All checks passed"
+          echo "🚀 Ready for use as GitHub template"
