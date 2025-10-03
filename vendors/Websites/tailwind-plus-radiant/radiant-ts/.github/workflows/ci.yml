@@ -96,3 +96,4 @@ jobs:
           path: .next/
           retention-days: 7
 # CI/CD Pipeline Status: Fri Oct  3 11:16:10 CEST 2025
+# Manual trigger: Fri Oct  3 11:22:49 CEST 2025
