@@ -23,6 +23,13 @@ export type { ShadowToken, SemanticShadowToken } from './shadows';
 export { borderRadius, semanticBorderRadius } from './border-radius';
 export type { BorderRadiusToken, SemanticBorderRadiusToken } from './border-radius';
 
+// Import the tokens first
+import { colors, semanticColors } from './colors';
+import { typography, textStyles } from './typography';
+import { spacing, semanticSpacing } from './spacing';
+import { shadows, semanticShadows } from './shadows';
+import { borderRadius, semanticBorderRadius } from './border-radius';
+
 // Consolidated design tokens object
 export const designTokens = {
   colors,
@@ -40,6 +47,4 @@ export const designTokens = {
 // Component size and variant types
 export type ComponentSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 export type ComponentVariant = 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'info';
-export type ComponentState = 'default' | 'hover' | 'active' | 'disabled' | 'loading';
-export type ComponentVariant = 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'info';
-export type ComponentState = 'default' | 'hover' | 'focus' | 'active' | 'disabled';
+export type ComponentState = 'default' | 'hover' | 'focus' | 'active' | 'disabled' | 'loading';
