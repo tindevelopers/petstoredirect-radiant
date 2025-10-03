@@ -89,11 +89,11 @@ Enhancement suggestions are tracked as GitHub issues. When creating an enhanceme
 ### Running the Development Environment
 
 ```bash
-# Start Storybook for component development
-npm run dev
+# Start development server
+npm run build
 
 # Run in watch mode
-npm run dev -- --watch
+npm run build:watch
 ```
 
 ### Building
@@ -102,8 +102,6 @@ npm run dev -- --watch
 # Build the library
 npm run build
 
-# Build Storybook
-npm run build-storybook
 ```
 
 ### Testing
@@ -294,12 +292,6 @@ Add screenshots to help explain your changes
 
 ## 🎯 Development Tips
 
-### Working with Storybook
-
-- Create stories for all new components
-- Include all variants and states
-- Add controls for interactive testing
-- Document props and usage
 
 ### Testing Components
 
@@ -321,7 +313,6 @@ Add screenshots to help explain your changes
 - [React Documentation](https://react.dev)
 - [TypeScript Documentation](https://www.typescriptlang.org/docs/)
 - [Tailwind CSS Documentation](https://tailwindcss.com/docs)
-- [Storybook Documentation](https://storybook.js.org/docs)
 - [Testing Library Documentation](https://testing-library.com/docs/)
 
 ## 💬 Questions?

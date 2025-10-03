@@ -274,8 +274,8 @@ spacing.layout.container      // Container spacing
 # Install dependencies
 npm install
 
-# Start Storybook
-npm run dev
+# Start development server
+npm run build
 
 # Build the library
 npm run build
@@ -360,7 +360,6 @@ MIT License - see [LICENSE](./LICENSE) for details.
 ## 🔗 Links
 
 - [Documentation](https://your-docs-site.com) _(Coming soon)_
-- [Storybook](https://your-storybook.com) _(Coming soon)_
 - [GitHub Repository](https://github.com/your-username/frontend-design-system)
 - [npm Package](https://www.npmjs.com/package/frontend-design-system) _(Coming soon)_
 - [Issue Tracker](https://github.com/your-username/frontend-design-system/issues)
