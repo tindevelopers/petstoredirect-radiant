@@ -27,9 +27,5 @@
       "dependsOn": ["build"],
       "cache": false
     },
-    "deploy": {
-      "dependsOn": ["build", "lint", "type-check"],
-      "cache": false
-    }
   }
 }

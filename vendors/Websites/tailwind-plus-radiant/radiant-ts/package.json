@@ -15,9 +15,9 @@
     "turbo:lint": "turbo lint",
     "turbo:type-check": "turbo type-check",
     "turbo:test": "turbo test",
-    "turbo:deploy": "turbo deploy",
+    "turbo:deploy": "turbo build lint type-check",
     "ci": "turbo build lint type-check",
-    "deploy": "turbo deploy"
+    "deploy": "./scripts/deploy.sh"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.6",
