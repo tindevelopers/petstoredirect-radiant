@@ -2,131 +2,42 @@ name: CI
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [ main, develop, saas-admin ]
   pull_request:
     branches: [ main, develop ]
 
 jobs:
-  lint:
-    name: Lint
+  build-and-test:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v4
-      
+        
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '18'
           cache: 'npm'
-      
+          
       - name: Install dependencies
         run: npm ci
-      
-      - name: Run ESLint
-        run: npm run lint
-      
-      - name: Check formatting
-        run: npm run format:check
-
-  type-check:
-    name: Type Check
-    runs-on: ubuntu-latest
-    
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-      
-      - name: Install dependencies
-        run: npm ci
-      
-      - name: Run TypeScript type check
-        run: npm run type-check
-
-  test:
-    name: Test
-    runs-on: ubuntu-latest
-    
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-      
-      - name: Install dependencies
-        run: npm ci
-      
-      - name: Run tests
-        run: npm test -- --coverage
-      
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3
-        with:
-          files: ./coverage/lcov.info
-          flags: unittests
-          name: codecov-umbrella
-
-  build:
-    name: Build
-    runs-on: ubuntu-latest
-    
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-      
-      - name: Install dependencies
-        run: npm ci
-      
-      - name: Build package
-        run: npm run build
-      
+        
+      - name: Type check
+        run: npm run turbo:type-check
+        
+      - name: Lint
+        run: npm run turbo:lint
+        
+      - name: Test
+        run: npm run turbo:test
+        
+      - name: Build
+        run: npm run turbo:build
+        
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: dist
+          name: build-files
           path: dist/
-          retention-days: 7
-
-  storybook:
-    name: Build Storybook
-    runs-on: ubuntu-latest
-    
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-      
-      - name: Install dependencies
-        run: npm ci
-      
-      - name: Build Storybook
-        run: npm run build-storybook
-      
-      - name: Upload Storybook artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: storybook-static
-          path: storybook-static/
           retention-days: 7

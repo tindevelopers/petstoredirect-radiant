@@ -62,7 +62,12 @@
     "clean": "rimraf dist",
     "prepublishOnly": "npm run clean && npm run build",
     "release": "changeset publish",
-    "version": "changeset version"
+    "version": "changeset version",
+    "turbo:build": "turbo build",
+    "turbo:lint": "turbo lint",
+    "turbo:test": "turbo test",
+    "turbo:type-check": "turbo type-check",
+    "turbo:dev": "turbo dev"
   },
   "keywords": [
     "design-system",
@@ -140,6 +145,7 @@
     "tailwindcss": "^4.0.0",
     "ts-jest": "^29.1.0",
     "tslib": "^2.6.0",
+    "turbo": "^2.5.8",
     "typescript": "^5.2.0"
   },
   "engines": {
