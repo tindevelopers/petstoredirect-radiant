@@ -16,8 +16,7 @@
     "turbo:type-check": "turbo type-check",
     "turbo:test": "turbo test",
     "turbo:deploy": "turbo build lint type-check",
-    "ci": "turbo build lint type-check",
-    "deploy": "./scripts/deploy.sh",
+    "ci": "turbo build lint type-check test",
     "github-actions": "echo 'GitHub Actions CI/CD Pipeline with Turborepo'"
   },
   "dependencies": {

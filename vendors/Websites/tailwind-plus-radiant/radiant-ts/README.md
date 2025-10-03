@@ -26,9 +26,6 @@ This project uses Turborepo for optimized CI/CD workflows with GitHub Actions:
 # Run full CI pipeline
 npm run ci
 
-# Deploy with Turborepo
-npm run deploy
-
 # Development with Turborepo
 npm run turbo:dev
 
@@ -38,9 +35,9 @@ npm run github-actions
 
 ### GitHub Actions Workflow
 - **Trigger**: Push to `main` or `saas-admin` branches
-- **Pipeline**: Lint → Type Check → Build → Deploy
+- **Pipeline**: Lint → Type Check → Test → Build
 - **Optimization**: Turborepo parallel execution and caching
-- **Deployment**: Automatic Vercel deployment
+- **Purpose**: Template validation and quality assurance
 
 ## Available Pages
 
