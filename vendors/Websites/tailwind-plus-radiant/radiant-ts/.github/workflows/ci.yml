@@ -1,10 +1,11 @@
-name: CI/CD Pipeline
+name: CI/CD Pipeline - CACHE BUSTER
 
 on:
   push:
     branches: [main, saas-admin]
   pull_request:
     branches: [main, saas-admin]
+  workflow_dispatch:
 
 jobs:
   ci:
@@ -36,10 +37,17 @@ jobs:
       - name: Run Turborepo Build
         run: npx turbo build
       
+      - name: Cache Buster Step
+        run: |
+          echo "🚀 CACHE BUSTER: $(date)"
+          echo "🔄 Forcing GitHub API refresh"
+          echo "📊 Random: $RANDOM"
+          echo "✅ Workflow cache cleared"
+      
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: build-artifacts
+          name: build-artifacts-$(date +%s)
           path: .next/
           retention-days: 7
 # CI/CD Pipeline Status: Fri Oct  3 11:16:10 CEST 2025

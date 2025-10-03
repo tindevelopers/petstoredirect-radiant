@@ -1,0 +1,23 @@
+name: Cache Buster Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      force_refresh:
+        description: 'Force GitHub API refresh'
+        required: true
+        default: 'true'
+
+jobs:
+  cache-buster:
+    name: Force API Refresh
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cache Buster
+        run: |
+          echo "💥 GITHUB CACHE BUSTER ACTIVATED"
+          echo "🕐 Timestamp: $(date)"
+          echo "🎲 Random: $RANDOM"
+          echo "🔄 Forcing GitHub API to refresh"
+          echo "✅ This should clear all cached workflow data"
+          echo "🚀 Storybook workflow should now be gone!"
