@@ -1,6 +1,6 @@
 # Radiant
 
-Radiant is a [Tailwind Plus](https://tailwindcss.com/plus) site template built using [Tailwind CSS](https://tailwindcss.com) and [Next.js](https://nextjs.org), with a blog powered by [Sanity](https://www.sanity.io).
+Radiant is a modern SaaS website template built using [Tailwind CSS](https://tailwindcss.com) and [Next.js](https://nextjs.org), optimized with [Turborepo](https://turbo.build) for CI/CD workflows and deployment to Vercel.
 
 ## Getting started
 
@@ -10,21 +10,7 @@ To get started with this template, first install the npm dependencies:
 npm install
 ```
 
-Next, create a new Sanity project to power the blog within this template:
-
-```bash
-npm create sanity@latest -- --env=.env.local --create-project "Radiant Blog" --dataset production
-```
-
-This will prompt you to create a new Sanity account if you don't have one already. When asked "Would you like to add configuration files for a Sanity project in this Next.js folder?", choose "n".
-
-Next, optionally import the demo seed data for the blog:
-
-```bash
-npx sanity@latest dataset import seed.tar.gz
-```
-
-Next, run the development server:
+Run the development server:
 
 ```bash
 npm run dev
@@ -32,7 +18,27 @@ npm run dev
 
 Finally, open [http://localhost:3000](http://localhost:3000) in your browser to view the website.
 
-To manage your blog content, visit the embedded Sanity Studio at [http://localhost:3000/studio](http://localhost:3000/studio).
+## CI/CD Pipeline
+
+This project uses Turborepo for optimized CI/CD workflows:
+
+```bash
+# Run full CI pipeline
+npm run ci
+
+# Deploy with Turborepo
+npm run deploy
+
+# Development with Turborepo
+npm run turbo:dev
+```
+
+## Available Pages
+
+- **Home** (`/`) - Main landing page
+- **Company** (`/company`) - About page  
+- **Login** (`/login`) - Authentication page
+- **Pricing** (`/pricing`) - Pricing plans
 
 ## Customizing
 
