@@ -20,7 +20,7 @@ Finally, open [http://localhost:3000](http://localhost:3000) in your browser to 
 
 ## CI/CD Pipeline
 
-This project uses Turborepo for optimized CI/CD workflows:
+This project uses Turborepo for optimized CI/CD workflows with GitHub Actions:
 
 ```bash
 # Run full CI pipeline
@@ -31,7 +31,16 @@ npm run deploy
 
 # Development with Turborepo
 npm run turbo:dev
+
+# GitHub Actions trigger
+npm run github-actions
 ```
+
+### GitHub Actions Workflow
+- **Trigger**: Push to `main` or `saas-admin` branches
+- **Pipeline**: Lint → Type Check → Build → Deploy
+- **Optimization**: Turborepo parallel execution and caching
+- **Deployment**: Automatic Vercel deployment
 
 ## Available Pages
 

@@ -17,7 +17,8 @@
     "turbo:test": "turbo test",
     "turbo:deploy": "turbo build lint type-check",
     "ci": "turbo build lint type-check",
-    "deploy": "./scripts/deploy.sh"
+    "deploy": "./scripts/deploy.sh",
+    "github-actions": "echo 'GitHub Actions CI/CD Pipeline with Turborepo'"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.6",
