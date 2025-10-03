@@ -1,4 +1,4 @@
-name: CI/CD Pipeline
+name: CI
 
 on:
   push:
@@ -7,100 +7,92 @@ on:
     branches: [main, saas-admin]
 
 jobs:
-  build-and-test:
+  lint:
+    name: Lint
     runs-on: ubuntu-latest
     
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v4
-
+      
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
-
+      
       - name: Install dependencies
         run: npm ci
+      
+      - name: Run ESLint
+        run: npm run lint
 
-      - name: Lint
-        run: npx turbo lint
-
-      - name: Type check
-        run: npx turbo type-check
-
-      - name: Build
-        run: npx turbo build
-        env:
-          NEXT_PUBLIC_VERCEL_URL: ${{ github.event.repository.html_url }}
-
-      - name: Test
-        run: npx turbo test
-        if: false  # Enable when tests are added
-
-  deploy-preview:
-    needs: build-and-test
+  type-check:
+    name: Type Check
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
     
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v4
-
+      
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
-
+      
       - name: Install dependencies
         run: npm ci
+      
+      - name: Run TypeScript type check
+        run: npm run type-check
 
-      - name: Build for preview
-        run: npx turbo build
-        env:
-          NEXT_PUBLIC_VERCEL_URL: ${{ github.event.repository.html_url }}
-
-      - name: Comment PR
-        uses: actions/github-script@v7
-        with:
-          script: |
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: '🚀 Preview build completed successfully!'
-            })
-
-  deploy-production:
-    needs: build-and-test
+  test:
+    name: Test
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/saas-admin'
     
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v4
-
+      
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
-
+      
       - name: Install dependencies
         run: npm ci
+      
+      - name: Run tests
+        run: npm test
 
-      - name: Build for production
-        run: npx turbo build
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Build Next.js app
+        run: npm run build
         env:
           NEXT_PUBLIC_VERCEL_URL: ${{ github.event.repository.html_url }}
-
-      - name: Deploy to Vercel
-        uses: amondnet/vercel-action@v25
+      
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
         with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.ORG_ID }}
-          vercel-project-id: ${{ secrets.PROJECT_ID }}
-          working-directory: ./
-          vercel-args: '--prod'
+          name: nextjs-build
+          path: .next/
+          retention-days: 7
 # CI/CD Pipeline Status: Fri Oct  3 11:16:10 CEST 2025
